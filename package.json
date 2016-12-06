@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/michael-chow/sf-assignment-backend#readme",
   "dependencies": {
+    "cron": "^1.1.1",
     "express": "^4.14.0",
     "mongoose": "^4.7.1",
     "request": "^2.79.0"
