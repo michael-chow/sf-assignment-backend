@@ -1,0 +1,27 @@
+{
+  "name": "sf-assignment-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michael-chow/sf-assignment-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michael-chow/sf-assignment-backend/issues"
+  },
+  "homepage": "https://github.com/michael-chow/sf-assignment-backend#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongoose": "^4.7.1",
+    "request": "^2.79.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
