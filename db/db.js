@@ -15,7 +15,7 @@ const videoSchema = new Schema({
 	hour: Number,
 	minute: Number,
 	result: [{
-		id: String,
+		videoId: String,
 		title: String,
 		description: String,
 		thumbnail: String //standard thumbnail is stored in db
