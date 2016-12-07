@@ -2,9 +2,9 @@ const request = require('request');
 const link = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&regionCode=HK&maxResults=10&key=AIzaSyA5u7bNbwofHZBYcI583BkIMehRR45wG8k';
 const db = require('./db/db');
 
-let time = new Date();
 
 const retrieve = () => {
+	let time = new Date();
 	request(link, (err, response, body) => {
 		if (err) {
 			console.log('There is an error: ', err)
@@ -25,6 +25,7 @@ const retrieve = () => {
 				year: time.getFullYear(),
 				month: time.getMonth() + 1,
 				date: time.getDate(),
+				hour: time.getHours(),
 				minute: time.getMinutes(),
 				result: resultArray
 			});
@@ -42,3 +43,5 @@ const retrieve = () => {
 };
 
 retrieve();
+
+module.exports.retrieve = retrieve;
