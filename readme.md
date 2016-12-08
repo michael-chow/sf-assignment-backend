@@ -29,7 +29,6 @@ npm start
 
 The Video schema has the following fields:
 
-* Unique ID
 * Time String - identify the time when the record is saved
 * Result - an array of YouTube videos, with information including Video ID, Title, Description, Thumbnail, Viewcount
 
