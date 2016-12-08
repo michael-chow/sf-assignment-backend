@@ -45,7 +45,7 @@ The Video schema has the following fields:
 }
 ```
 
-** RESTful API
+## RESTful API
 
 To access database records, sends a GET request to /youtube with a query in this format
 
