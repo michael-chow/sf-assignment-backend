@@ -2,46 +2,44 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const db = require('./db/db');
-const fetcher = require('./worker');
+const fetcher = require('./fetcher');
 const CronJob = require('cron').CronJob;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const dailyFetcher = new CronJob({
+// Cronjob invoking the fetcher function per hour at :00
+const hourlyFetcher = new CronJob({
   cronTime: '00 00 * * * *',
   onTick: fetcher.retrieve,
   start: false,
 });
-dailyFetcher.start();
+hourlyFetcher.start();
 
-app.get('/', (req, res) => {
-	res.send("Hello");
-});
-
+// API for getting video information, query in format of "q=yyyymmddhh"
 app.get('/youtube', (req, res) => {
-	let query = req.query.q;
-	if(query.length !== 10) {
-		res.status(500).send("Wrong Query Format")
+	let query = req.query.q.toString();
+	if (query === undefined) {
+		res.send('Please provide a query string')
+	} else if (query.length !== 10) {
+		res.status(500).send('Wrong query format')
 	} else {
-		let queryObj = {
-		year: query.substr(0,4),
-		month: query.substr(4,2),
-		date: query.substr(6,2),
-		hour: query.substr(8,2)
-		};
-		db.Video.findOne(queryObj, (err, data) => {
+		db.Video.findOne({timeString: query}, (err, data) => {
 			if (err) {
 				res.status(500).send(err)
 			} else {
 				if (data === null) {
-					res.send("No Result Found");
+					res.send('No Result Found');
 				} else {
-					res.send(data.result);
+					res.json(data);
 				}
 			}
 		});
 	}
+});
+
+app.get('/*', (req, res) => {
+	res.send('Hello! Please use "/youtube" for query.');
 });
 
 app.listen(3000);

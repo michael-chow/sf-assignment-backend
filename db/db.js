@@ -9,16 +9,13 @@ db.once('open', function() {
 });
 
 const videoSchema = new Schema({
-	year: Number,
-	month: Number,
-	date: Number,
-	hour: Number,
-	minute: Number,
+	timeString: String,
 	result: [{
 		videoId: String,
 		title: String,
 		description: String,
-		thumbnail: String //standard thumbnail is stored in db
+		thumbnail: String, //standard thumbnail is stored in db
+		viewCount: Number
 	}]
 });
 
