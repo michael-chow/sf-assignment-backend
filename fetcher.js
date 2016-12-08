@@ -14,7 +14,7 @@ const retrieve = () => {
 	let hour = time.getHours() < 10 ? '0'+ time.getHours() : time.getHours();
 	let timeString = ''+year+month+date+hour;
 
-	// send GET request to YouTube
+	// send GET request to YouTube API
 	request(link, (err, response, body) => {
 		if (err) {
 			console.log('There is an error: ', err)
