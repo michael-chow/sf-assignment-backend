@@ -18,23 +18,25 @@ hourlyFetcher.start();
 
 // API for getting video information, query in format of "q=yyyymmddhh"
 app.get('/youtube', (req, res) => {
-	let query = req.query.q.toString();
-	if (query === undefined) {
+	if (req.query.q === undefined) {
 		res.send('Please provide a query string')
-	} else if (query.length !== 10) {
-		res.status(500).send('Wrong query format')
 	} else {
-		db.Video.findOne({timeString: query}, (err, data) => {
-			if (err) {
-				res.status(500).send(err)
-			} else {
-				if (data === null) {
-					res.send('No Result Found');
+		let query = req.query.q.toString();
+		if (query.length !== 10) {
+			res.status(500).send('Wrong query format')
+		} else {
+			db.Video.findOne({timeString: query}, (err, data) => {
+				if (err) {
+					res.status(500).send(err)
 				} else {
-					res.json(data);
+					if (data === null) {
+						res.send('No Result Found');
+					} else {
+						res.json(data); //returns result in JSON format
+					}
 				}
-			}
-		});
+			});
+		}
 	}
 });
 

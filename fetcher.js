@@ -38,6 +38,7 @@ const retrieve = () => {
 				result: resultArray
 			});
 
+			//save record to database
 			newRecord.save((err, success) => {
 				if (err) {
 					console.log(err);
