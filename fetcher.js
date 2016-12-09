@@ -33,6 +33,7 @@ const retrieve = () => {
 				return video;
 			});
 
+			//instantiate new db record
 			let newRecord = new db.Video({
 				timeString: timeString,
 				result: resultArray
