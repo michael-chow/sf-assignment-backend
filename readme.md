@@ -25,6 +25,10 @@ Start server with index.js as entry point
 npm start
 ```
 
+## Cron Job
+
+A Cron job is configured in server to retrieve the top 10 YouTube videos in Hong Kong on an hourly basis, at :00 of each hour.
+
 ## Database Structure
 
 The Video schema has the following fields:
